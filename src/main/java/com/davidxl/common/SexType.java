@@ -7,9 +7,9 @@ import java.util.Map;
  * Created by xianglei on 2018/4/17.
  */
 public enum SexType implements BaseEnum<SexType, String> {
-    male("m","男性"),
-    female("f","女性"),
-    unknown("u","未知");
+    male("male","男性"),
+    female("female","女性"),
+    unknown("unknown","未知");
 
     private String value;
     private String displayName;

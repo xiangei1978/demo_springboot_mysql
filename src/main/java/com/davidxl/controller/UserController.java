@@ -1,6 +1,7 @@
 package com.davidxl.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.davidxl.common.SexType;
 import com.davidxl.model.User;
 import com.davidxl.service.UserService;
 import io.swagger.annotations.Api;
@@ -26,14 +27,14 @@ public class UserController {
     @ApiOperation(value="新增用户", notes="新增用户")
     @ApiImplicitParams({
                       @ApiImplicitParam(paramType = "body", name = "user",
-                              value = "{ \"name\": \"xlr\", \"age\": 3, \"amount\": 10.11, \"sex\": \"m=男;f=女;u=未知\"  }", required = true, dataType = "string")
+                              value = "{ \"name\": \"xlr\", \"age\": 3, \"amount\": 10.11, \"sex\": \"man=男;female=女;unknown=未知\"  }", required = true, dataType = "string")
     })
     @RequestMapping(value="/insert", method=RequestMethod.POST)
     public String insertUser(@RequestBody User user){
 //        User user = new User();
 //        user.setName(name);
 //        user.setAge(age);
-//        user.setSex(SexType.unknown);
+//       user.setSex(SexType.unknown);
 
         return "插入结果:" + userService.insertSelective(user) + " userID =  " + user.getId();
         //return peoplePerties.getName()+"====="+peoplePerties.getAge();

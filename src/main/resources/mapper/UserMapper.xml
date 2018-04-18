@@ -7,7 +7,8 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="age" property="age" jdbcType="INTEGER" />
     <result column="amount" property="amount" jdbcType="DECIMAL" />
-    <result column="sex" property="sex" typeHandler="com.davidxl.handle.UniversalEnumHandler" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <!--<result column="sex" property="sex" typeHandler="com.davidxl.handle.UniversalEnumHandler" />-->
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, age, amount, sex
