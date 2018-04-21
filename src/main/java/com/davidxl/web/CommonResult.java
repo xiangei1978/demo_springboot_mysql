@@ -7,14 +7,14 @@ import com.davidxl.common.type.NormalResultType;
  */
 public class CommonResult {
     private Integer code = NormalResultType.ok.getCode();
-    private String msg;
+    private String errMsg;
     private Object data;
 
-    public CommonResult(Integer code,Object data,String msg) {
+    public CommonResult(Integer code,Object data,String errMsg) {
 
         this.code = code;
         this.data = data;
-        this.msg = msg;
+        this.errMsg = errMsg;
     }
     public CommonResult() {
 
@@ -28,12 +28,12 @@ public class CommonResult {
         this.code = code;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getErrMsg() {
+        return errMsg;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
     }
 
     public Object getData() {
