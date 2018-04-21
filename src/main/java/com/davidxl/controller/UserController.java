@@ -2,8 +2,11 @@ package com.davidxl.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.davidxl.common.SexType;
+import com.davidxl.common.type.NormalResultType;
 import com.davidxl.model.User;
 import com.davidxl.service.UserService;
+import com.davidxl.web.CommonResult;
+import com.davidxl.web.NormalException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -27,16 +30,27 @@ public class UserController {
     @ApiOperation(value="新增用户", notes="新增用户")
     @ApiImplicitParams({
                       @ApiImplicitParam(paramType = "body", name = "user",
-                              value = "{ \"name\": \"xlr\", \"age\": 3, \"amount\": 10.11, \"sex\": \"man=男;female=女;unknown=未知\"  }", required = true, dataType = "string")
+                              value = "{ \"name\": \"xlr\", \"age\": 3, \"amount\": 10.11, \"sex\": \"male=男;female=女;unknown=未知\"  }", required = true, dataType = "string")
     })
     @RequestMapping(value="/insert", method=RequestMethod.POST)
-    public String insertUser(@RequestBody User user){
+    public CommonResult insertUser(@RequestBody User user){
+        CommonResult r = new CommonResult();
+//        if (1==1)
+//            throw new RuntimeException("测试发生异常了");
+
+        if (user.getAge()==3)
+            throw  new NormalException(-1,"三岁无法注册!");
+
+
+        if (userService.insertSelective(user) !=1)
+            throw  new  NormalException(NormalResultType.err_database_insert);
+
 //        User user = new User();
 //        user.setName(name);
 //        user.setAge(age);
 //       user.setSex(SexType.unknown);
-
-        return "插入结果:" + userService.insertSelective(user) + " userID =  " + user.getId();
+        return   r ;
+        //return "插入结果:" + userService.insertSelective(user) + " userID =  " + user.getId();
         //return peoplePerties.getName()+"====="+peoplePerties.getAge();
 //        return "index";
     }
@@ -47,10 +61,12 @@ public class UserController {
             @ApiImplicitParam(paramType = "query", name = "id1", value = "用户id1", defaultValue = "1", dataType = "int")
     })
     @RequestMapping(value="/select", method=RequestMethod.GET)
-    public String selectByPrimaryKey( Integer id   ){
-        User user  = userService.selectByPrimaryKey(id);
+    public CommonResult selectByPrimaryKey( Integer id   ){
 
-        return   JSONObject.toJSONString(user)  ;
+        CommonResult r = new CommonResult();
+        User user  = userService.selectByPrimaryKey(id);
+        r.setData(user);
+        return   r  ;
     }
 
 
