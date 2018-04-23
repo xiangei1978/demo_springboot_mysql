@@ -17,7 +17,7 @@ public class ResponseHttpResult {
 
     public ResponseHttpResult(int status, Object content) {
         this(content);
-        this.content = content;
+        this.status = status;
     }
 
 

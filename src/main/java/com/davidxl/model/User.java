@@ -2,9 +2,10 @@ package com.davidxl.model;
 
 import com.davidxl.common.SexType;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class User {
+public class User implements Serializable {
     private Integer id;
 
     private String name;
