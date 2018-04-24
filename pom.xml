@@ -90,6 +90,12 @@
 		</dependency>
 		<!--redis依赖- 结束-->
 
+		<dependency>
+			<groupId>com.alibaba.rocketmq</groupId>
+			<artifactId>rocketmq-client</artifactId>
+			<version>3.5.8</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
