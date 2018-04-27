@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * Created by xianglei on 2018/4/17.
  */
 @Service
-@CacheConfig(cacheNames = "users")
+//@CacheConfig(cacheNames = "users")
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-//    @Cacheable(value="users", key="'user_'+#id")
-    @Cacheable( key="'user_'+#id")
+   @Cacheable(value="users", key="'user_'+#id")
+//    @Cacheable(value="products", key="'user_'+#id")
     public User selectByPrimaryKey(Integer id) {
 
         return userMapper.selectByPrimaryKey(id);
